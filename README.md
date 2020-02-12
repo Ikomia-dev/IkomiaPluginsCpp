@@ -16,3 +16,6 @@ Some of Ikomia plugins need external resources such as trained models. Here is t
 
 **MaskRCNN**
 - [mask_rcnn_inception_v2_coco_2018_01_28.tar.gz](http://download.tensorflow.org/models/object_detection/mask_rcnn_inception_v2_coco_2018_01_28.tar.gz)
+
+**MobileNetSSD**
+- [mobileNetSSD.caffemodel](https://drive.google.com/open?id=0B3gersZ2cHIxRm5PMWRoTkdHdHc)
