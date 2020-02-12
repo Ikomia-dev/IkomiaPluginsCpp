@@ -19,3 +19,6 @@ Some of Ikomia plugins need external resources such as trained models. Here is t
 
 **MobileNetSSD**
 - [mobileNetSSD.caffemodel](https://drive.google.com/open?id=0B3gersZ2cHIxRm5PMWRoTkdHdHc)
+
+**TextDetectorEAST**
+- [frozen_east_text_detection.tar.gz](https://www.dropbox.com/s/r2ingd0l3zt8hxs/frozen_east_text_detection.tar.gz?dl=1)
