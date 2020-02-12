@@ -4,7 +4,8 @@ SUBDIRS += \
     FaceDetector \
     FacemarkLBF \
     InceptionV3 \
-    MaskRCNN
+    MaskRCNN \
+    MobileNetSSD
 
 
 create.commands = $(MKDIR) $$PWD/Build/code_analysis
