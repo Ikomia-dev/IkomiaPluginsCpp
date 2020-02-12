@@ -68,3 +68,6 @@ INCLUDEPATH += $$GLPROJECT_INCLUDE/DataProcess
 macx {
 INSTALLS += makeDeploy
 }
+
+DISTFILES += \
+    Model/download_model.txt
