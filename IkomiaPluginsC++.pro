@@ -5,7 +5,8 @@ SUBDIRS += \
     FacemarkLBF \
     InceptionV3 \
     MaskRCNN \
-    MobileNetSSD
+    MobileNetSSD \
+    TextDetectorEAST
 
 
 create.commands = $(MKDIR) $$PWD/Build/code_analysis
