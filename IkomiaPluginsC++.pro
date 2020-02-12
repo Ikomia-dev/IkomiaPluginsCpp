@@ -6,7 +6,8 @@ SUBDIRS += \
     InceptionV3 \
     MaskRCNN \
     MobileNetSSD \
-    TextDetectorEAST
+    TextDetectorEAST \
+    YoloV3
 
 
 create.commands = $(MKDIR) $$PWD/Build/code_analysis
