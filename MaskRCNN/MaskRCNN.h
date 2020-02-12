@@ -79,6 +79,7 @@ class MASKRCNNSHARED_EXPORT CMaskRCNNFactory : public CProcessFactory
         CMaskRCNNFactory()
         {
             m_info.m_name = QObject::tr("Mask RCNN").toStdString();
+            m_info.m_shortDescription = QObject::tr("Semantic segmentation based on Faster R-CNN method").toStdString();
             m_info.m_description = QObject::tr("We present a conceptually simple, flexible, and general framework for object instance segmentation. "
                                                "Our approach efficiently detects objects in an image while simultaneously generating a high-quality segmentation mask for each instance. "
                                                "The method, called Mask R-CNN, extends Faster R-CNN by adding a branch for predicting an object mask "
@@ -91,6 +92,7 @@ class MASKRCNNSHARED_EXPORT CMaskRCNNFactory : public CProcessFactory
                                                "including the COCO 2016 challenge winners. We hope our simple and effective approach will serve as a solid baseline and "
                                                "help ease future research in instance-level recognition. Code will be made available.").toStdString();
             m_info.m_path = QObject::tr("Plugins/C++/Object/Segmentation").toStdString();
+            m_info.m_version = "1.0.0";
             m_info.m_iconPath = "Icon/icon.png";
             m_info.m_authors = "Kaiming He, Georgia Gkioxari, Piotr Dollar, Ross Girshick";
             m_info.m_article = "Mask R-CNN";
@@ -98,7 +100,7 @@ class MASKRCNNSHARED_EXPORT CMaskRCNNFactory : public CProcessFactory
             m_info.m_year = 2017;
             m_info.m_license = "Apache 2 License";
             m_info.m_repo = "https://github.com/tensorflow/models/tree/master/research";
-            m_info.m_keywords = "deep,learning,segmentation,semantic,tensorflow";
+            m_info.m_keywords = "deep,learning,segmentation,semantic,tensorflow,Faster R-CNN";
         }
 
         virtual ProtocolTaskPtr create(const ProtocolTaskParamPtr& pParam) override
