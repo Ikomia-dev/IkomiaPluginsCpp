@@ -1,7 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    FaceDetector
+    FaceDetector \
+    FacemarkLBF
 
 
 create.commands = $(MKDIR) $$PWD/Build/code_analysis
