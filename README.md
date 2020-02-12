@@ -22,3 +22,6 @@ Some of Ikomia plugins need external resources such as trained models. Here is t
 
 **TextDetectorEAST**
 - [frozen_east_text_detection.tar.gz](https://www.dropbox.com/s/r2ingd0l3zt8hxs/frozen_east_text_detection.tar.gz?dl=1)
+
+**YOLO V3**
+- [yolov3.weights](https://pjreddie.com/media/files/yolov3.weights)
