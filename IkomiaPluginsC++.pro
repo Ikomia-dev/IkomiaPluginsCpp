@@ -3,7 +3,8 @@ TEMPLATE = subdirs
 SUBDIRS += \
     FaceDetector \
     FacemarkLBF \
-    InceptionV3
+    InceptionV3 \
+    MaskRCNN
 
 
 create.commands = $(MKDIR) $$PWD/Build/code_analysis
