@@ -68,3 +68,7 @@ INCLUDEPATH += $$GLPROJECT_INCLUDE/DataProcess
 macx {
 INSTALLS += makeDeploy
 }
+
+DISTFILES += \
+    Model/download_model.txt \
+    Model/res10_300x300_ssd_iter_140000.prototxt
