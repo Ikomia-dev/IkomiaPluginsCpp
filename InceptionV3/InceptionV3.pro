@@ -70,6 +70,7 @@ INSTALLS += makeDeploy
 }
 
 DISTFILES += \
+    Icon/icon.png \
     Model/LICENSE \
     Model/download_model.txt \
     Model/imagenet_names.txt

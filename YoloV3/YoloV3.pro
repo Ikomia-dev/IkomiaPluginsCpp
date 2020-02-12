@@ -70,6 +70,7 @@ INSTALLS += makeDeploy
 }
 
 DISTFILES += \
+    Icon/icon.png \
     Model/coco_names.txt \
     Model/download_model.txt \
     Model/yolov3.cfg

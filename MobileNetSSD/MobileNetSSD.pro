@@ -70,6 +70,7 @@ INSTALLS += makeDeploy
 }
 
 DISTFILES += \
+    Icon/icon.png \
     Model/download_model.txt \
     Model/mobileNetSSD.prototxt \
     Model/pascalVoc0712_names.txt

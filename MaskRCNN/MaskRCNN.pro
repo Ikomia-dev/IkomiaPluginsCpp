@@ -71,6 +71,7 @@ INSTALLS += makeDeploy
 }
 
 DISTFILES += \
+    Icon/icon.png \
     Model/coco_names.txt \
     Model/download_model.txt \
     Model/mask_rcnn_inception_v2_coco_2018_01_28.pbtxt

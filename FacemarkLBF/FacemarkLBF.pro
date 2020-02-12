@@ -70,4 +70,5 @@ INSTALLS += makeDeploy
 }
 
 DISTFILES += \
+    Icon/icon.png \
     Model/download_model.txt
