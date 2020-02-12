@@ -12,3 +12,7 @@ Some of Ikomia plugins need external resources such as trained models. Here is t
 **Facemark LBF**
 - [lbfmodel.yaml](https://raw.githubusercontent.com/kurnianggoro/GSOC2017/master/data/lbfmodel.yaml)
 
+
+**InceptionV3**
+- [tensorflow_inception_graph.pb](https://github.com/petewarden/tf_ios_makefile_example/raw/master/data/tensorflow_inception_graph.pb)
+
