@@ -72,7 +72,7 @@ class MOBILENETSSDSHARED_EXPORT CMobileNetSSDFactory : public CProcessFactory
         CMobileNetSSDFactory()
         {
             m_info.m_name = QObject::tr("MobileNet SSD").toStdString();
-            m_info.m_shortDescription = QObject::tr("Single Shot Detector (SSD) for mobile and embedded vision applications").toStdString();
+            m_info.m_shortDescription = QObject::tr("Single Shot Detector (SSD) for mobile and embedded vision applications.").toStdString();
             m_info.m_description = QObject::tr("We present a class of efficient models called MobileNets for mobile and embedded vision applications. "
                                                "MobileNets are based on a streamlined architecture that uses depth-wise separable convolutions to build light weight deep neural networks. "
                                                "We introduce two simple global hyper-parameters that efficiently trade off between latency and accuracy. "

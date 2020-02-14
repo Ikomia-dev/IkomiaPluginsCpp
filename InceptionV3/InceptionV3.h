@@ -61,6 +61,7 @@ class INCEPTIONV3SHARED_EXPORT CInceptionV3Factory : public CProcessFactory
         CInceptionV3Factory()
         {
             m_info.m_name = QObject::tr("InceptionV3").toStdString();
+            m_info.m_shortDescription = QObject::tr("Classification deep neural network trained on ImageNet dataset. Developped by Google.").toStdString();
             m_info.m_description = QObject::tr("Convolutional networks are at the core of most state-of-the-art computer vision solutions for a wide variety of tasks. "
                                                "Since 2014 very deep convolutional networks started to become mainstream, "
                                                "yielding substantial gains in various benchmarks. "
