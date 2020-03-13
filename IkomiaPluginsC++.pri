@@ -45,7 +45,7 @@ msvc {
 ##################################################################
 # Load local machine settings (dependencies version, options...) #
 ##################################################################
-include(../GLProject/LocalSettings.pri)
+include(../Ikomia/LocalSettings.pri)
 
 VERSION = 1.0.0
 
@@ -53,7 +53,7 @@ VERSION = 1.0.0
 #                       INCLUDE                                                     #
 #####################################################################################
 #Ikomia path
-GLPROJECT_INCLUDE = $$PWD/../GLProject/Build/include
+IKOMIA_INCLUDE = $$PWD/../Ikomia/Build/include
 
 # Global include directory for Mac OS X
 macx: INCLUDEPATH += /usr/local/include
@@ -77,9 +77,9 @@ win32: INCLUDEPATH += $$(PROGRAMFILES)/fftw-3.3.5-dll64
 #                       LIB                                                         #
 #####################################################################################
 #Ikomia path
-GLPROJECT_LIBS = $$PWD/../GLProject/Build/lib
-LIBS = -L$$GLPROJECT_LIBS
-macx: LIBS += -L$$PWD/../GLProject/Build/bin/Ikomia.app/Contents/Frameworks
+IKOMIA_LIBS = $$PWD/../Ikomia/Build/lib
+LIBS = -L$$IKOMIA_LIBS
+macx: LIBS += -L$$PWD/../Ikomia/Build/bin/Ikomia.app/Contents/Frameworks
 
 # Global lib directory for:
 # Linux

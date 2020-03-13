@@ -183,7 +183,7 @@ class MOBILENETSSDSHARED_EXPORT CMobileNetSSDWidgetFactory : public CWidgetFacto
 class MOBILENETSSDSHARED_EXPORT CMobileNetSSDInterface : public QObject, public CPluginProcessInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "glproject.plugin.process")
+    Q_PLUGIN_METADATA(IID "ikomia.plugin.process")
     Q_INTERFACES(CPluginProcessInterface)
 
     public:

@@ -185,7 +185,7 @@ class TEXTDETECTOREASTSHARED_EXPORT CTextDetectorEASTWidgetFactory : public CWid
 class TEXTDETECTOREASTSHARED_EXPORT CTextDetectorEASTInterface : public QObject, public CPluginProcessInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "glproject.plugin.process")
+    Q_PLUGIN_METADATA(IID "ikomia.plugin.process")
     Q_INTERFACES(CPluginProcessInterface)
 
     public:

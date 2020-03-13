@@ -49,21 +49,21 @@ win32:CONFIG(release, debug|release): LIBS += -lUtils
 else:win32:CONFIG(debug, debug|release): LIBS += -lUtils
 else:unix: LIBS += -lUtils
 
-INCLUDEPATH += $$GLPROJECT_INCLUDE/Utils
+INCLUDEPATH += $$IKOMIA_INCLUDE/Utils
 
 #Dynamic link with Core
 win32:CONFIG(release, debug|release): LIBS += -lCore
 else:win32:CONFIG(debug, debug|release): LIBS += -lCore
 else:unix: LIBS += -lCore
 
-INCLUDEPATH += $$GLPROJECT_INCLUDE/Core
+INCLUDEPATH += $$IKOMIA_INCLUDE/Core
 
 #Dynamic link with DataProcess
 win32:CONFIG(release, debug|release): LIBS += -lDataProcess
 else:win32:CONFIG(debug, debug|release): LIBS += -lDataProcess
 else:unix: LIBS += -lDataProcess
 
-INCLUDEPATH += $$GLPROJECT_INCLUDE/DataProcess
+INCLUDEPATH += $$IKOMIA_INCLUDE/DataProcess
 
 # DEPLOYMENT
 macx {

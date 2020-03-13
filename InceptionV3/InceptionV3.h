@@ -156,7 +156,7 @@ class INCEPTIONV3SHARED_EXPORT CInceptionV3WidgetFactory : public CWidgetFactory
 class INCEPTIONV3SHARED_EXPORT CInceptionV3Interface : public QObject, public CPluginProcessInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "glproject.plugin.process")
+    Q_PLUGIN_METADATA(IID "ikomia.plugin.process")
     Q_INTERFACES(CPluginProcessInterface)
 
     public:

@@ -175,7 +175,7 @@ class FACEMARKLBFSHARED_EXPORT CFacemarkLBFWidgetFactory : public CWidgetFactory
 class FACEMARKLBFSHARED_EXPORT CFacemarkLBFInterface : public QObject, public CPluginProcessInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "glproject.plugin.process")
+    Q_PLUGIN_METADATA(IID "ikomia.plugin.process")
     Q_INTERFACES(CPluginProcessInterface)
 
     public:
