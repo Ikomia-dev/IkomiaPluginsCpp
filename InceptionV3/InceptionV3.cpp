@@ -98,7 +98,7 @@ void CInceptionV3::manageOutput(cv::Mat &dnnOutput)
     //Graphics output
     auto pGraphicsOutput = std::dynamic_pointer_cast<CGraphicsProcessOutput>(getOutput(1));
     assert(pGraphicsOutput);
-    pGraphicsOutput->emplaceLayer(new CGraphicsLayer("DnnLayer"));
+    pGraphicsOutput->setNewLayer("InceptionV3");
     pGraphicsOutput->setImageIndex(0);
 
     //Measures output
@@ -109,8 +109,8 @@ void CInceptionV3::manageOutput(cv::Mat &dnnOutput)
     //So we saved necessary information into the output and the final object is
     //created when the output is managed by the App
     std::string className = classId < (int)m_classNames.size() ? m_classNames[classId] : "unknown " + std::to_string(classId);
-    QString label = QString::fromStdString(className + " : " + std::to_string(confidence));
-    pGraphicsOutput->addTextItem(30, 30, label);
+    std::string label = className + " : " + std::to_string(confidence);
+    pGraphicsOutput->addText(label, 30, 30);
 
     //Store values to be shown in results table
     for(int i=0; i<sortedIdx.cols; ++i)

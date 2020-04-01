@@ -122,9 +122,8 @@ void CMaskRCNN::manageMaskRCNNOutput(std::vector<cv::Mat> &netOutputs)
 
     //Graphics output
     auto pGraphicsOutput = std::dynamic_pointer_cast<CGraphicsProcessOutput>(getOutput(2));
-    pGraphicsOutput->emplaceLayer(new CGraphicsLayer("DnnLayer"));
+    pGraphicsOutput->setNewLayer(getName());
     pGraphicsOutput->setImageIndex(1);
-    auto pRectProperty = m_graphicsContextPtr->getRectPropertyPtr();
 
     CMat imgSrc = pInput->getImage();
     cv::Mat labelImg = cv::Mat::zeros(imgSrc.rows, imgSrc.cols, CV_8UC1);
@@ -154,14 +153,12 @@ void CMaskRCNN::manageMaskRCNNOutput(std::vector<cv::Mat> &netOutputs)
             float height = bottom - top + 1;
 
             //Create rectangle graphics of bbox
-            auto pGraphicsRect = new CGraphicsRectangle(*pRectProperty, pGraphicsOutput->getLayer());
-            pGraphicsRect->setRect(left, top, width, height);
-            pGraphicsOutput->addItem(pGraphicsRect);
+            pGraphicsOutput->addRectangle(left, top, width, height);
 
             //Retrieve class label
             std::string className = classId < m_classNames.size() ? m_classNames[classId] : "unknown " + std::to_string(classId);
-            QString label = QString::fromStdString(className + " : " + std::to_string(confidence));
-            pGraphicsOutput->addTextItem(left + 5, top + 5, label);
+            std::string label = className + " : " + std::to_string(confidence);
+            pGraphicsOutput->addText(label, left + 5, top + 5);
 
             //Extract mask
             cv::Mat objMask(netOutputs[0].size[2], netOutputs[0].size[3], CV_32F, netOutputs[0].ptr<float>(n, classId));
@@ -182,9 +179,7 @@ void CMaskRCNN::manageMaskRCNNOutput(std::vector<cv::Mat> &netOutputs)
 
     auto pOutput = std::dynamic_pointer_cast<CImageProcessIO>(getOutput(0));
     if(pOutput)
-    {
         pOutput->setImage(labelImg);
-    }
 }
 
 std::vector<cv::Vec3b> CMaskRCNN::generateColorMap(const cv::Mat &netOutput, bool bWithBackgroundClass)

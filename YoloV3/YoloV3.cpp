@@ -107,11 +107,12 @@ void CYoloV3::manageOutput(cv::Mat &dnnOutput)
     auto pParam = std::dynamic_pointer_cast<CYoloV3Param>(m_pParam);
     auto pInput = std::dynamic_pointer_cast<CImageProcessIO>(getInput(0));
     CMat imgSrc = pInput->getImage();
+
     //Graphics output
     auto pGraphicsOutput = std::dynamic_pointer_cast<CGraphicsProcessOutput>(getOutput(1));
-    pGraphicsOutput->emplaceLayer(new CGraphicsLayer("DnnLayer"));
+    pGraphicsOutput->setNewLayer(getName());
     pGraphicsOutput->setImageIndex(0);
-    auto pRectProperty = m_graphicsContextPtr->getRectPropertyPtr();
+
     //Measures output
     auto pMeasureOutput = std::dynamic_pointer_cast<CMeasureProcessIO>(getOutput(2));
     pMeasureOutput->clearData();
@@ -134,19 +135,17 @@ void CYoloV3::manageOutput(cv::Mat &dnnOutput)
             float top = yCenter - height/2;
 
             //Create rectangle graphics of bbox
-            auto pGraphicsRect = new CGraphicsRectangle(*pRectProperty, pGraphicsOutput->getLayer());
-            pGraphicsRect->setRect(left, top, width, height);
-            pGraphicsOutput->addItem(pGraphicsRect);
+            auto graphicsBox = pGraphicsOutput->addRectangle(left, top, width, height);
 
             //Retrieve class label
             std::string className = objectClass < m_classNames.size() ? m_classNames[objectClass] : "unknown " + std::to_string(objectClass);
-            QString label = QString::fromStdString(className + " : " + std::to_string(confidence));
-            pGraphicsOutput->addTextItem(xCenter+5-width/2, yCenter+5-height/2, label);
+            std::string label = className + " : " + std::to_string(confidence);
+            pGraphicsOutput->addText(label, xCenter+5-width/2, yCenter+5-height/2);
 
             //Store values to be shown in results table
             std::vector<CObjectMeasure> results;
-            results.emplace_back(CObjectMeasure(CMeasure(CMeasure::CUSTOM, QObject::tr("Confidence").toStdString()), confidence, pGraphicsRect->getId(), className));
-            results.emplace_back(CObjectMeasure(CMeasure::Id::BBOX, {left, top, width, height}, pGraphicsRect->getId(), className));
+            results.emplace_back(CObjectMeasure(CMeasure(CMeasure::CUSTOM, QObject::tr("Confidence").toStdString()), confidence, graphicsBox->getId(), className));
+            results.emplace_back(CObjectMeasure(CMeasure::Id::BBOX, {left, top, width, height}, graphicsBox->getId(), className));
             pMeasureOutput->addObjectMeasures(results);
         }
     }

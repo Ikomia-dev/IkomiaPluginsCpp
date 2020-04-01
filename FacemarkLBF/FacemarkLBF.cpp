@@ -73,43 +73,33 @@ void CFacemarkLBF::drawPolyline(std::shared_ptr<CGraphicsProcessOutput> &pOutput
 {
     if(bIsClosed)
     {
-        GraphicsPolygonProperty prop = *m_graphicsContextPtr->getPolygonPropertyPtr();
-
-        auto pPolygon = new CGraphicsPolygon(prop, pOutput->getLayer());
+        PolygonF poly;
         for(size_t i = start; i <= end; i++)
         {
             auto pt = landmarks[i];
-            pPolygon->addPoint(QPointF(pt.x, pt.y));
+            poly.push_back(CPointF(pt.x, pt.y));
         }
-        pOutput->addItem(pPolygon);
+        pOutput->addPolygon(poly);
     }
     else
     {
-        GraphicsPolylineProperty prop = *m_graphicsContextPtr->getPolylinePropertyPtr();
-
-        auto pPolyline = new CGraphicsPolyline(prop, pOutput->getLayer());
+        PolygonF poly;
         for(size_t i = start; i <= end; i++)
         {
             auto pt = landmarks[i];
-            pPolyline->addPoint(QPointF(pt.x, pt.y));
+            poly.push_back(CPointF(pt.x, pt.y));
         }
-        pOutput->addItem(pPolyline);
+        pOutput->addPolyline(poly);
     }
 }
 
 void CFacemarkLBF::drawLandmarksPoint(std::shared_ptr<CGraphicsProcessOutput> &pOutput, std::vector<cv::Point2f> &landmarks)
 {
-    GraphicsPointProperty prop = *m_graphicsContextPtr->getPointPropertyPtr();
-
-    auto currentItems = pOutput->getItems();
     for(size_t i = 0; i < landmarks.size(); i++)
     {
         auto pt = landmarks[i];
-        auto pos = QPointF(pt.x, pt.y);
-        auto pPoint = new CGraphicsPoint(pos, prop, pOutput->getLayer());
-        currentItems.append(pPoint);
+        pOutput->addPoint(CPointF(pt.x, pt.y));
     }
-    pOutput->setItems(currentItems);
 }
 
 void CFacemarkLBF::drawLandmarksFace(std::shared_ptr<CGraphicsProcessOutput> &pOutput, std::vector<cv::Point2f> &landmarks)
@@ -151,8 +141,6 @@ void CFacemarkLBF::drawDelaunay(std::shared_ptr<CGraphicsProcessOutput> &pOutput
     subdiv.getTriangleList(triangleList);
     std::vector<cv::Point> pt(3);
 
-    GraphicsPolygonProperty prop = *m_graphicsContextPtr->getPolygonPropertyPtr();
-
     for( size_t i = 0; i < triangleList.size(); i++ )
     {
         cv::Vec6f t = triangleList[i];
@@ -163,11 +151,11 @@ void CFacemarkLBF::drawDelaunay(std::shared_ptr<CGraphicsProcessOutput> &pOutput
         // Draw rectangles completely inside the image.
         if ( rect.contains(pt[0]) && rect.contains(pt[1]) && rect.contains(pt[2]))
         {
-            auto pTriangle = new CGraphicsPolygon(prop, pOutput->getLayer());
-            pTriangle->addPoint(QPointF(pt[0].x, pt[0].y));
-            pTriangle->addPoint(QPointF(pt[1].x, pt[1].y));
-            pTriangle->addPoint(QPointF(pt[2].x, pt[2].y));
-            pOutput->addItem(pTriangle);
+            PolygonF triangle;
+            triangle.push_back(CPointF(pt[0].x, pt[0].y));
+            triangle.push_back(CPointF(pt[1].x, pt[1].y));
+            triangle.push_back(CPointF(pt[2].x, pt[2].y));
+            pOutput->addPolygon(triangle);
         }
     }
 }
@@ -182,19 +170,20 @@ void CFacemarkLBF::manageInputGraphics(const CMat &imgSrc)
     if(pGraphicsInput == nullptr)
         return;
 
-    auto pLayer = pGraphicsInput->getLayer();
-    if(pLayer == nullptr)
-        return;
-
-    auto childItems = pLayer->getChildItems();
+    auto items = pGraphicsInput->getItems();
 
     // Loop over bounding boxes
-    for(auto&& it : childItems)
+    for(auto&& it : items)
     {
-        int x = it->boundingRect().x();
-        int y = it->boundingRect().y();
-        int w = it->boundingRect().width();
-        int h = it->boundingRect().height();
+        if(it->isTextItem())
+            continue;
+
+        auto rect = it->getBoundingRect();
+        int x = rect.x();
+        int y = rect.y();
+        int w = rect.width();
+        int h = rect.height();
+
         // Check if whole bb is inside image domain
         if(x >= 0 && y >= 0 && x+w < imgSrc.cols && y+h < imgSrc.rows)
         {
@@ -211,7 +200,7 @@ void CFacemarkLBF::manageOutput(std::vector<std::vector<cv::Point2f> > &landmark
     if(pGraphicOutput == nullptr)
         throw CException(CoreExCode::NULL_POINTER, "Invalid graphics output", __func__, __FILE__, __LINE__);
 
-    pGraphicOutput->emplaceLayer(new CGraphicsLayer(QString::fromStdString(getName())));
+    pGraphicOutput->setNewLayer(getName());
     pGraphicOutput->setImageIndex(0);
 
     // If successful, render the landmarks on the face

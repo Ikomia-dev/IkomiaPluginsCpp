@@ -155,9 +155,9 @@ void CTextDetectorEAST::manageOutput(const std::vector<cv::Mat>& netOutputs)
 
     //Graphics output
     auto pGraphicsOutput = std::dynamic_pointer_cast<CGraphicsProcessOutput>(getOutput(1));
-    pGraphicsOutput->emplaceLayer(new CGraphicsLayer("DnnLayer"));
+    pGraphicsOutput->setNewLayer(getName());
     pGraphicsOutput->setImageIndex(0);
-    auto pPolyProperty = m_graphicsContextPtr->getPolygonPropertyPtr();
+
     //Measures output
     auto pMeasureOutput = std::dynamic_pointer_cast<CMeasureProcessIO>(getOutput(2));
     pMeasureOutput->clearData();
@@ -173,16 +173,16 @@ void CTextDetectorEAST::manageOutput(const std::vector<cv::Mat>& netOutputs)
         cv::Point2f vertices[4];
         box.points(vertices);
 
-        auto pGraphicsPoly = new CGraphicsPolygon(*pPolyProperty, pGraphicsOutput->getLayer());
+        PolygonF poly;
         for(int j=0; j<4; ++j)
-            pGraphicsPoly->addPoint(QPointF(vertices[j].x * xFactor, vertices[j].y * yFactor));
+            poly.push_back(CPointF(vertices[j].x * xFactor, vertices[j].y * yFactor));
 
-        pGraphicsOutput->addItem(pGraphicsPoly);
+        auto graphicsPoly = pGraphicsOutput->addPolygon(poly);
 
         //Store values to be shown in results table
         std::vector<CObjectMeasure> results;
-        results.emplace_back(CObjectMeasure(CMeasure(CMeasure::CUSTOM, QObject::tr("Confidence").toStdString()), confidences[indices[i]], pGraphicsPoly->getId(), "Text"));
-        results.emplace_back(CObjectMeasure(CMeasure::Id::ORIENTED_BBOX, {box.center.x * xFactor, box.center.y * yFactor, box.size.width, box.size.height, box.angle}, pGraphicsPoly->getId(), "Text"));
+        results.emplace_back(CObjectMeasure(CMeasure(CMeasure::CUSTOM, QObject::tr("Confidence").toStdString()), confidences[indices[i]], graphicsPoly->getId(), "Text"));
+        results.emplace_back(CObjectMeasure(CMeasure::Id::ORIENTED_BBOX, {box.center.x * xFactor, box.center.y * yFactor, box.size.width, box.size.height, box.angle}, graphicsPoly->getId(), "Text"));
         pMeasureOutput->addObjectMeasures(results);
     }
 }
