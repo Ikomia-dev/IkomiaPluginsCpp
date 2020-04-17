@@ -84,7 +84,7 @@ class MOBILENETSSDSHARED_EXPORT CMobileNetSSDFactory : public CProcessFactory
 
             m_info.m_path = QObject::tr("Plugins/C++/Object/Detection").toStdString();
             m_info.m_iconPath = "Icon/icon.png";
-            m_info.m_version = "1.0.0";
+            m_info.m_version = "0.2.0";
             m_info.m_authors = "Andrew G. Howard, Menglong Zhu, Bo Chen, Dmitry Kalenichenko, Weijun Wang, Tobias Weyand, Marco Andreetto, Hartwig Adam";
             m_info.m_article = "MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications";
             m_info.m_year = 2017;

@@ -84,6 +84,7 @@ class INCEPTIONV3SHARED_EXPORT CInceptionV3Factory : public CProcessFactory
             m_info.m_license = "Apache 2 License";
             m_info.m_repo = "https://github.com/tensorflow/models/tree/master/research";
             m_info.m_keywords = "deep,learning,classification,inception";
+            m_info.m_version = "0.2.0";
         }
 
         virtual ProtocolTaskPtr create(const ProtocolTaskParamPtr& pParam) override
