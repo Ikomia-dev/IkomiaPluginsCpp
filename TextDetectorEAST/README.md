@@ -1,1 +1,1 @@
-# EAST Text Detector fro Ikomia
+# EAST Text Detector for Ikomia
