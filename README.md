@@ -1,4 +1,7 @@
 # IkomiaPluginsCpp
+
+![](https://ikomia.com/static/showcase/img/home/plugin.png)
+
 C++ plugins for Ikomia platform
 
 ### External resources
