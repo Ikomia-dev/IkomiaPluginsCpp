@@ -1,8 +1,6 @@
-# IkomiaPluginsCpp
+# C++ plugins for Ikomia platform
 
 ![](https://ikomia.com/static/showcase/img/home/plugin.png)
-
-C++ plugins for Ikomia platform
 
 ### External resources
 Some of Ikomia plugins need external resources such as pre-trained models. Here is the list for each plugin:
