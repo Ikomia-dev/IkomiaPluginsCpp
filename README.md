@@ -22,3 +22,6 @@ Ikomia plugins are created for the Ikomia platform, they are fully and directly 
 5. Open your input data (images, videos or cameras)
 6. In the process pane, search for your new installed plugin and apply it.
 7. Enjoy the results!
+
+### External resources
+Some of Ikomia plugins need external resources like pre-trained models. In this case, plugin directory contains the model directly or a text file (download_model.txt) including the URL to download it.
